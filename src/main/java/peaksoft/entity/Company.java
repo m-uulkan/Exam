@@ -1,5 +1,7 @@
 package peaksoft.entity;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,8 +12,9 @@ public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
-    @Column(name="company_name",nullable = false,unique = true,length = 30)
+    @Column(name="company_name ",nullable = false,unique = true,length = 30)
     private String companyName;
+    @ColumnDefault("Kyrgyzstan")
     private String location;
 
     @OneToMany(mappedBy = "company",

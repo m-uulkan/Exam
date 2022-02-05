@@ -3,6 +3,8 @@ package peaksoft.entity;
 import javax.persistence.*;
 import java.util.List;
 
+import static javax.persistence.CascadeType.*;
+
 @Entity
 @Table(name="Person")
 public class Person {
@@ -17,7 +19,7 @@ public class Person {
     @Column(nullable = false)
     private String gender;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {DETACH, PERSIST, MERGE, REFRESH} )
     @JoinColumn(name = "company_id")
     private Company company;
 
@@ -25,7 +27,7 @@ public class Person {
     @JoinColumn(name="socialMedia_id")
     private List <SocialMedia> socialMediaList;
 
-    @OneToMany
+    @OneToMany(mappedBy = "person")
     @JoinColumn(name="car_id")
     private List<Car>carList;
 
